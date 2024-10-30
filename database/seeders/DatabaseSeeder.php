@@ -2,10 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\AssignmentDetail;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Artisan;
+use PHPUnit\Event\Telemetry\System;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,10 +15,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Artisan::call('migrate');
-        
-        // $this->call([
-        //     UserSeeder::class,
-        // ]);
+        // User::factory(10)->create();
+
+        $this->command->call('db:wipe');
+        $this->command->call('migrate:fresh');
+
+        $this->call([
+            UsersSeeder::class,
+            // AttachRoleToUserSeeder::class,
+        ]);
     }
 }
