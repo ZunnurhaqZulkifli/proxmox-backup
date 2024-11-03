@@ -94,14 +94,14 @@ class initialize extends Command
             return;
         }
 
-        $progress->finish();
+        $this->rCommand('php artisan db:seed');
+        $this->rCommand('php artisan health:check');
+        $this->rCommand('php artisan serve --port=8000 --host=127.0.0.1');
 
         $this->info(' ');
         $this->info('App Ready To Launch...');
         $this->info('run "php artisan app:start" to start the application.');
 
-        $this->rCommand('php artisan db:seed');
-        $this->rCommand('php artisan health:check');
-        $this->rCommand('php artisan serve --port=8000 --host=127.0.0.1');
+        $progress->finish();
     }
 }
