@@ -2,7 +2,9 @@
 
 namespace App\Console\Commands;
 
+use App\Models\SystemLogs;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 
 class initialize extends Command
 {
@@ -53,6 +55,9 @@ class initialize extends Command
     {
         $progress = $this->output->createProgressBar(100);
         $this->info(' ');
+
+        $this->rCOmmand('git stash');
+        
         $this->info('Starting the application setup process...');
         $this->warn('Signed by: ' . '~z.z~');
 
@@ -69,6 +74,10 @@ class initialize extends Command
             $this->error('Git pull failed!, contanct the administrator');
             return;
         }
+
+        $progress->advance(10);
+
+        $this->rCommand('git stash pop');
 
         $this->info('Installing Updates...');
 
@@ -90,5 +99,9 @@ class initialize extends Command
         $this->info(' ');
         $this->info('App Ready To Launch...');
         $this->info('run "php artisan app:start" to start the application.');
+
+        $this->rCommand('php artisan db:seed');
+        $this->rCommand('php artisan health:check');
+        $this->rCommand('php artisan serve --port=8000 --host=127.0.0.1');
     }
 }
