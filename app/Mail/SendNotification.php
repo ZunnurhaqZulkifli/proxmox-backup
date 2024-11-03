@@ -56,9 +56,6 @@ class SendNotification extends Mailable
 
     public function build()
     {
-
-        dd($this->messageContent);
-
         return $this
             ->subject('Notification from laravel app')
             ->view('emails.notification')

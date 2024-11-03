@@ -15,14 +15,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
         $this->command->call('db:wipe');
         $this->command->call('migrate:fresh');
 
         $this->call([
-            UsersSeeder::class,
-            // AttachRoleToUserSeeder::class,
+            UserSeeder::class,
+            BackupSeeder::class,
         ]);
     }
 }
