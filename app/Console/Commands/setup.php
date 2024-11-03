@@ -47,6 +47,7 @@ class setup extends Command
 
     public function handle()
     {
-        $this->rCommand('cd');
+        $this->rCommand('npm install');
+        $this->rCommand('npm run dev');
     }
 }

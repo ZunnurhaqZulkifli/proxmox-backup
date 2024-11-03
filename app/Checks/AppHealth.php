@@ -21,8 +21,6 @@ class AppHealth extends Check
             return $result->warning("The disk getting full ({$usedDiskSpacePercentage}% used)");
         }
 
-        dd($result);
-
         return $result->ok();
     }
 
