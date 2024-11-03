@@ -94,7 +94,7 @@ class initialize extends Command
             return;
         }
 
-        // $this->rCommand('php artisan db:seed');
+        $this->rCommand('php artisan db:seed');
         $this->rCommand('php artisan health:check');
         $this->rCommand('php artisan serve --port=8000 --host=127.0.0.1');
 
